@@ -1,0 +1,1 @@
+Use 'npm run dev:watch' in your terminal to run application.
