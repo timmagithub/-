@@ -7,14 +7,14 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
 
     constructor () {
         super();
         this.state = {
             movies: [],
             selectedMovie: null,
-            user: null
+            user: null,
             register: null
         };
     }
@@ -50,16 +50,15 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, selectedMovie } = this.state;
-    
         const { movies, selectedMovie, register, user } = this.state;
 
         /* loads registration screen */
         if (!register) return <RegistrationView onRegistration={(register) => this.onRegistration(register)} />; 
 
         /* loads login view if no user logged in */
-        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+        if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
 
+        /* while movie list loads into main view */
         if (movies.length === 0) return <div className="main-view" />;
     
         return (
