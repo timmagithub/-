@@ -1,0 +1,45 @@
+$main-color: rgb(230, 230, 250);
+
+.movie-view {
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: $main-color;
+    border: 2px solid black;
+}
+
+.value-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.movie-poster {
+    display: block;
+    text-align: center;
+}
+
+.movie-poster img {
+    margin-bottom: 40px;
+    width: 250px;
+}
+
+.label {
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.value {
+    font-size: larger;
+}
+
+.movie-description {
+    margin-bottom: 10px;
+}
+
+.director {
+    margin-bottom: 5px;
+}
+
+.genre {
+    margin-bottom: 20px;
+}
