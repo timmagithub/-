@@ -1,5 +1,13 @@
-$color: steelblue;
+$sec-color: rgb(241, 192, 183);
 
-.quikFlix {
-    color: $color;
+header {
+    padding-top: 10px;
+    padding-left: 60px;
+    padding-bottom: 10px;
+    background-color: $sec-color;
+    border-bottom: 2px solid black;
+}
+
+h1 {
+    font-size: larger;
 }
