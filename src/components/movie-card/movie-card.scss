@@ -1,0 +1,15 @@
+$main-color: rgb(230, 230, 250);
+
+.card-container {
+    box-sizing: border-box;
+    background-color: $main-color;
+    height: 550px;
+}
+
+.card-body {
+    background-color: white;
+    font-weight: 500;
+}
+
+
+
