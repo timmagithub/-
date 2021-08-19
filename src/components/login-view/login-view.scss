@@ -1,0 +1,16 @@
+$main-color: rgb(230, 230, 250);
+
+.container {
+    box-sizing: border-box;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    margin: 10px;
+    padding: 15px;
+    width: 66%;
+    background-color: $main-color;
+}
