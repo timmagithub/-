@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -13,9 +14,20 @@ export function LoginView(props) {
     /* send request to server to authenticate then call props.onLoggedIn(username) */
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(username, password);
-        props.onLoggedIn(username);
+        axios.post('https://quikflix.herokuapp.com/login', {
+            userName: username,
+            password: password
+        })
+        .then(response => {
+            const data = response.data;
+            props.onLoggedIn(data);
+        })
+        .catch(e => {
+            console.log('no such user')
+        });
+        
     };
+
 
     /* form inserted to login */
     return (
