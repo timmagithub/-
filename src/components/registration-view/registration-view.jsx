@@ -14,8 +14,20 @@ export function RegistrationView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(userName, password, email, birthDate);
-        props.onRegistration(userName);
+        axios.post('https://quikflix.herokuapp.com/users', {
+            userName: username,
+            password: password,
+            email: email,
+            birthDate: birthDate
+        })
+        .then(response => {
+            const data = response.data;
+            console.log(data);
+            window.open('/', '_self');
+        })
+        .catch(e=> {
+            console.log('error registering the user')
+        });
     };
 
     return (
