@@ -10,7 +10,7 @@ import './director-view.scss';
 export class DirectorView extends React.Component {
 
   render() {
-    const { director, onBackClick } = this.props;
+    const { movie, onBackClick } = this.props;
   
   return (
     <Container>
@@ -64,7 +64,7 @@ export class DirectorView extends React.Component {
   }
 }
 
-DirectorView.PropTypes = {
+DirectorView.propTypes = {
   movie: PropTypes.shape ({
     director: PropTypes.shape ({
       name: PropTypes.string.isRequired,
@@ -72,5 +72,5 @@ DirectorView.PropTypes = {
       birthDate: PropTypes.string.isRequired
     }),
   }),
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 };

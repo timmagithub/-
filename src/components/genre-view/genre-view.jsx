@@ -10,7 +10,7 @@ import './genre-view.scss';
 export class GenreView extends React.Component {
 
   render() {
-    const { genre, onBackClick } = this.props;
+    const { movie, onBackClick } = this.props;
   
   return (
     <Container>
@@ -53,12 +53,12 @@ export class GenreView extends React.Component {
   }
 }
 
-GenreView.PropTypes = {
+GenreView.propTypes = {
   movie: PropTypes.shape ({
     genre: PropTypes.shape ({
       genrename: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired
     })
   }),
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 };
