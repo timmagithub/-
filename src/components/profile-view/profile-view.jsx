@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState }from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Card, Button, Form } from 'react-bootstrap';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Button } from 'react-bootstrap';
+
+import { UserInfo } from './user-info';
+import { FavoriteMovies } from './favorite-movies';
+import { UpdateUser } from './update-user';
 
 
 
@@ -34,8 +36,8 @@ export class ProfileView extends React.Component {
     }
 
     getUser(token) {
-        axios.get('https://quikflix.herokuapp.com/users/${userName}', {
-            headers: { Authorization: 'Bearer ${token}' }
+        axios.get('https://quikflix.herokuapp.com/users/${user}', {
+            headers: { Authorization: `Bearer ${token}` }
         })
         .then(response => {
             this.setState({
@@ -51,32 +53,18 @@ export class ProfileView extends React.Component {
         });
     }
 
-    getMovies(token) {
-        axios.get('https://quikflix.herokuapp.com/users/${userName}/myMovies', {
-            headers: { Authorization: 'Bearer ${token}' }
-        })
-        .then(response => {
-            this.setState({
-                movies: response.data
-            });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-    }
-
     updateUser(token) {
 
-        const [ userName, setUsername ] = useState('');
+        const [ username, setUsername ] = useState('');
         const [ password, setPassword ] = useState('');
         const [ email, setEmail ] = useState('');
         const [ birthDate, setBirthdate ] = useState('');
 
         e.preventDefault();
-        axios.put('https://quikflix.herokuapp.com/users', {
-            headers: { Authorization: 'Bearer ${token}' },
+        axios.put(`https://quikflix.herokuapp.com/users/${user}`, {
+            headers: { Authorization: `Bearer ${token}` },
             data:{
-                userName: setUsername,
+                username: setUsername,
                 password: setPassword,
                 email: setEmail,
                 birthDate: setBirthdate
@@ -85,12 +73,12 @@ export class ProfileView extends React.Component {
         .then(response => {
             alert('Changes Saved.');
             this.setState({
-                userName: response.data.username,
+                username: response.data.username,
                 password: response.data.password,
                 email: response.data.email,
                 birthdate: response.data.birthDate
             })
-            window.open('/users/${userName}', '_self');
+            window.open('/users/${user}', '_self');
         })
         .catch(e=> {
             console.log('error updating user')
@@ -98,8 +86,8 @@ export class ProfileView extends React.Component {
     }
 
     handleDeleteMovie() {
-        axios.delete('https://quikflix.herokuapp.com/users/${userName}', {
-            headers: { Authorization: 'Bearer ${token}' }
+        axios.delete(`https://quikflix.herokuapp.com/users/${user}`, {
+            headers: { Authorization: `Bearer ${token}` }
         })
         .then(() => {
             alert('Movie removed from list.');
@@ -113,8 +101,8 @@ export class ProfileView extends React.Component {
     handleDeleteUser(e) {
         e.preventDefault();
 
-        axios.delete('https://quikflix.herokuapp.com/users/${userName}', {
-            headers: { Authorization: 'Bearer ${token}' }
+        axios.delete(`https://quikflix.herokuapp.com/users/${user}`, {
+            headers: { Authorization: `Bearer ${token}` }
         })
         .then(() => {
             localStorage.removeItem('user');
@@ -128,59 +116,29 @@ export class ProfileView extends React.Component {
     }
        
     render() {
+        const { user } = this.state;
+
         return (
-            /* update user interface */
-            <Card.Body>
-            <Container className="update-container">
-            <Form className="update-view">
-    
-                <Form.Group controlId="formUsername">
-                    <Form.Label>
-                        Change username:
-                    </Form.Label> 
-                    <Form.Control className="input" type="text" value={userName} onChange={(e) => setUsername(e.target.value)} />
-                </Form.Group>
-               
-                <Form.Group controlId="formPassword">
-                    <Form.Label>
-                        Change password: 
-                    </Form.Label>
-                    <Form.Control className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Group>
-    
-                <Form.Group controlId="formEmail">
-                    <Form.Label>
-                      Change email:
-                    </Form.Label> 
-                 <Form.Control className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </Form.Group>
+
+            <div>
+                /* display user info */
+                <UserInfo name={user.username} email={user.email}/>
                 
-                <Form.Group controlId="formBirthdate">
-                    <Form.Label>
-                      Change birthdate: 
-                    </Form.Label>
-                    <Form.Control className="input" type="birthDate" value={birthDate} onChange={(e) => setBirthdate(e.target.value)} />
-                </Form.Group>
-    
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                    Submit
-                </Button>
-    
-            </Form>
-            </Container>
-            </Card.Body>
+                /* users movieList with button to remove movie from list */
+                <FavoriteMovies movieList={movieList} />   
 
-        /* users movieList */
+                /* update user interface */
+               <UpdateUser handleSubmit={handleSubmit} /> 
 
-        /* allow user to remove movie from movieList */
-
-        /* allow user to deregister */
-
+                /* allow user to deregister */    
+                <Button onClick={handleDeleteUser}>Delete Account</Button>
+                
+            </div>
         );
     }
 }
 
-ProfileView.PropTypes = {
+ProfileView.propTypes = {
     user: PropTypes.shape ({
       username: PropTypes.string.isRequired,
       password: PropTypes.string.isRequired,
@@ -193,5 +151,5 @@ ProfileView.PropTypes = {
           })
         )
     }),
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func
   };
