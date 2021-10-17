@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 
 import './registration-view.scss';
 
@@ -65,6 +66,11 @@ export function RegistrationView(props) {
             <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Submit
             </Button>
+            
+            <Link to={'/'} >
+                <Button variant="link">Login</Button>
+            </Link>
+
 
         </Form>
         </Container>
