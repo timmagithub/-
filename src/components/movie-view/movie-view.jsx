@@ -1,102 +1,111 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 
 import './movie-view.scss';
-
 export class MovieView extends React.Component {
 
   render() {
+
+    const handleSubmit = (e) => {
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      axios.post(`https://quikflix.herokuapp.com/users/${user}/myMovies/` + 
+          this.props.movie._id, {}, {headers: { Authorization: `Bearer ${token}` }, })
+          .then(response => {
+              const data = response.data;
+              console.log(data);
+              alert('Movie was added to your favorites. (If this was done in error, go to profile page to remove it.');
+          })
+          .catch(e=> {
+              console.log('error adding movie to your favorites')
+          });
+    };
+
+
     const { movie, onBackClick } = this.props;
-  
+
   return (
-    <Container>
+      <Container>
 
-    <div className="movie-view">
-      <Row>
-      <Col>
-      <div className="movie-poster">
-        <img src={movie.image} />
-      </div>
-      </Col>
-      </Row>
+        <div className="movie-view">
+          <Row>
+            <Col>
+              <div className="movie-poster">
+                <img crossOrigin="anonymous" variant="top" src={movie.image} />
+              </div>
+            </Col>
+          </Row>
 
-      <Row>
-      <Col>
-      <div className="movie-title">
+          <Row>
+            <Col>
+              <div className="movie-title">
 
-        <span className="label">Title: </span>
-        <span className="value-title">{movie.title}</span>
-        <br></br>
-        
-      </div>
-      </Col>
-      </Row>
+                <span className="label">Title: </span>
+                <span className="value-title">{movie.title}</span>
+                <br></br>
+                
+              </div>
+            </Col>
+          </Row>
 
-      <Row>
-      <Col>
-      <div className="movie-description">
+          <Row>
+            <Col>
+              <div className="movie-description">
 
-        <span className="label">Description: </span>
-        <span className="value">{movie.description}</span>
+                <span className="label">Description: </span>
+                <span className="value">{movie.description}</span>
 
-      </div>
-      </Col>
-      </Row>
+              </div>
+            </Col>
+          </Row>
 
-      <Row>
-      <Col>
-      <div className="director">
+          <Row>
+            <Col>
+              <span className="label">Director: </span>
+              <Link to={`/directors/${movie.director.name}`}>
+                <Button variant="link">{movie.director.name}</Button>
+              </Link>              
+            </Col>
+          </Row>  
 
-        <span className="label">Director: </span>
-        <span className="value">{movie.director.name}</span>
+          <Row>
+            <Col>
+              <span className="label">Genre: </span>
+              <Link to={`/genres/${movie.genre.genrename}`}>
+                <Button variant="link">{movie.genre.genrename}</Button>
+              </Link>
+              <br/>
+              <br/>
+            </Col>
+          </Row>
 
-      </div>
-      </Col>
-      </Row>
+          <Row>
+            <Col>
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
+                  Add to Favs
+              </Button>
+            </Col>
 
-      <Row>
-      <Col>
-      <div className="genre">
+            <Col>
+              <Button variant="primary" onClick={() => onBackClick(null)}>
+                Back
+              </Button>
+            </Col>
+          </Row>
 
-        <span className="label">Genre: </span>
-        <span className="value">{movie.genre.genrename}</span>
-
-      </div>
-      </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Link to={'/director/${movie.director.name'}>
-            <Button variant="link">Director</Button>
-          </Link>
-        </Col>
-        <Col>
-          <Link to={'/genres/${movie.genre.genreName}'}>
-            <Button variant="link">Genre</Button>
-          </Link>
-        </Col>
-      </Row>
-
-      <Row>
-      <Col>
-      <Button variant="primary" onClick={() => onBackClick(null)}>
-        Back
-      </Button>
-      </Col>
-      </Row>
-
-    </div>
-    </Container>
-    );
-  }
+        </div>
+      </Container>
+   
+   )}
 }
 
-MovieView.PropTypes = {
+MovieView.propTypes = {
   movie: PropTypes.shape ({
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -109,5 +118,5 @@ MovieView.PropTypes = {
       genrename: PropTypes.string.isRequired
     })
   }),
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 };
