@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-
+import { Link } from 'react-router-dom';
+ 
 import './login-view.scss'
 
 export function LoginView(props) {
@@ -21,6 +22,7 @@ export function LoginView(props) {
         .then(response => {
             const data = response.data;
             props.onLoggedIn(data);
+            window.open('/', '_self');
         })
         .catch(e => {
             console.log('no such user')
@@ -55,6 +57,10 @@ export function LoginView(props) {
             <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Submit
             </Button>
+
+            <Link to={'/register'} >
+                <Button variant="link">Register</Button>
+            </Link>
 
         </Form>
         </Container>
