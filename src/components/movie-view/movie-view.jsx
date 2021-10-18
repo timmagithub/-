@@ -115,7 +115,7 @@ MovieView.propTypes = {
       name: PropTypes.string.isRequired
     }),
     genre: PropTypes.shape ({
-      genrename: PropTypes.string.isRequired
+      genreName: PropTypes.string.isRequired
     })
   }),
   onClick: PropTypes.func

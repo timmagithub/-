@@ -21,7 +21,7 @@ export class GenreView extends React.Component {
       <div className="genre-name">
 
         <span className="label">Genre: </span>
-        <span className="value-title">{movie.genre.genrename}</span>
+        <span className="value-title">{movie.genres.genreName}</span>
         <br></br>
         
       </div>
@@ -33,7 +33,7 @@ export class GenreView extends React.Component {
       <div className="genre-description">
 
         <span className="label">Description: </span>
-        <span className="value">{movie.genre.description}</span>
+        <span className="value">{movie.genres.description}</span>
 
       </div>
       </Col>
@@ -56,7 +56,7 @@ export class GenreView extends React.Component {
 GenreView.propTypes = {
   movie: PropTypes.shape ({
     genre: PropTypes.shape ({
-      genrename: PropTypes.string.isRequired,
+      genreName: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired
     })
   }),
