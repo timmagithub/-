@@ -62,11 +62,6 @@ export class MainView extends React.Component {
         this.getMovies(authData.token);
     }
 
-    onLoggedOut = () => {
-        localStorage.clear();
-        window.open('/', '_self');
-    }
-
     render() {
         const { user, movies } = this.state;
 

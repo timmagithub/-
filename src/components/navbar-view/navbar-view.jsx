@@ -2,8 +2,16 @@ import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap';
 
 export class NavbarView extends React.Component {
-    render() {
+    onLoggedOut = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user'); 
+            console.log('logged out');
+            this.setState({
+                user: null
+            });
+    }
 
+    render() {
         const { user } = this.props;
         
         return (
