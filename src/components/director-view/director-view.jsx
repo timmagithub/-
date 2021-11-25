@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -10,7 +9,7 @@ import './director-view.scss';
 export class DirectorView extends React.Component {
 
   render() {
-    const { movie, onBackClick } = this.props;
+    const { director, onBackClick } = this.props;
   
   return (
     <Container>
@@ -21,7 +20,7 @@ export class DirectorView extends React.Component {
       <div className="director-name">
 
         <span className="label">Name: </span>
-        <span className="value-title">{movie.director.name}</span>
+        <span className="value-title">{director.name}</span>
         <br></br>
         
       </div>
@@ -33,7 +32,7 @@ export class DirectorView extends React.Component {
       <div className="director-bio">
 
         <span className="label">Bio: </span>
-        <span className="value">{movie.director.bio}</span>
+        <span className="value">{director.bio}</span>
 
       </div>
       </Col>
@@ -41,10 +40,10 @@ export class DirectorView extends React.Component {
 
       <Row>
       <Col>
-      <div className="director-birthdate">
+      <div className="director-birthDate">
 
         <span className="label">Birthdate: </span>
-        <span className="value">{movie.director.birthDate}</span>
+        <span className="value">{director.birth_date}</span>
 
       </div>
       </Col>
@@ -63,14 +62,3 @@ export class DirectorView extends React.Component {
     );
   }
 }
-
-DirectorView.propTypes = {
-  movie: PropTypes.shape ({
-    director: PropTypes.shape ({
-      name: PropTypes.string.isRequired,
-      bio: PropTypes.string.isRequired,
-      birthDate: PropTypes.string.isRequired
-    }),
-  }),
-  onClick: PropTypes.func
-};

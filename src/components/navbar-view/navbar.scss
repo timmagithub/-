@@ -1,0 +1,20 @@
+.navbar {
+    width: 100%; 
+}
+
+.nav-link {
+    background-color: rgb(66, 66, 66);
+    color: white;
+    border-radius: 15%;
+    margin: 2px;
+    
+    &:hover{
+        background-color: rgb(185, 185, 224);
+        color: rgb(0, 0, 0);
+    }
+}
+
+h1 {
+    font-weight: 900;
+    font-style: oblique;
+}

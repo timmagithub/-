@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -10,7 +9,7 @@ import './genre-view.scss';
 export class GenreView extends React.Component {
 
   render() {
-    const { movie, onBackClick } = this.props;
+    const { genre, onBackClick } = this.props;
   
   return (
     <Container>
@@ -21,7 +20,7 @@ export class GenreView extends React.Component {
       <div className="genre-name">
 
         <span className="label">Genre: </span>
-        <span className="value-title">{movie.genre.genrename}</span>
+        <span className="value-title">{genre.genrename}</span>
         <br></br>
         
       </div>
@@ -33,7 +32,7 @@ export class GenreView extends React.Component {
       <div className="genre-description">
 
         <span className="label">Description: </span>
-        <span className="value">{movie.genre.description}</span>
+        <span className="value">{genre.description}</span>
 
       </div>
       </Col>
@@ -52,13 +51,3 @@ export class GenreView extends React.Component {
     );
   }
 }
-
-GenreView.propTypes = {
-  movie: PropTypes.shape ({
-    genre: PropTypes.shape ({
-      genrename: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired
-    })
-  }),
-  onClick: PropTypes.func
-};

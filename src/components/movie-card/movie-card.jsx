@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -48,11 +47,3 @@ export class MovieCard extends React.Component {
     }
 }
 
-MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        year: PropTypes.string.isRequired
-    }),
-    onClick: PropTypes.func
-};

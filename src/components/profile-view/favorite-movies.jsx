@@ -1,22 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
 
-export function FavoriteMovies( { handleDeleteMovie }) {
+import { MovieCard } from '../movie-card/movie-card';
+
+import "./profile-view.scss"
+
+export function FavoriteMovies( { handleDeleteMovie, movieList}) {
     return (
-        <div>
+        <div >
             <h2>Favorite Movies</h2>
-            {movieList.map((movies) => {
-                return (
-                    <div key={movies._id}> 
-                        <img src={movies.image} />
-                        <Link to={'.movies/${movies_id}'}>
-                            <h4>{movies.title}</h4>
-                        </Link>
-                        <button variant='secondary' onClick={() => handleDeleteMovie(movies._id)}>Remove from list</button>
-                    </div>
-                )
-            })}
+            <div className="fav-movies">
+            {movieList.map(m => 
+            <Col >
+                <MovieCard movie={m} key={m._id} />
+            </Col>    
+        )}
         </div>
-
+        </div>
     )
 }

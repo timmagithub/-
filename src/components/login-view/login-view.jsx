@@ -5,18 +5,19 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
- 
+ import { connect } from 'react-redux';
+
 import './login-view.scss'
 
 export function LoginView(props) {
-    const [ username, setUsername ] = useState('');
+    const [ userName, setuserName ] = useState('');
     const [ password, setPassword ] = useState('');
     
-    /* send request to server to authenticate then call props.onLoggedIn(username) */
+    /* send request to server to authenticate then call props.onLoggedIn(userName) */
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('https://quikflix.herokuapp.com/login', {
-            userName: username,
+            userName: userName,
             password: password
         })
         .then(response => {
@@ -36,12 +37,12 @@ export function LoginView(props) {
         <Container className="container">
         <Form className="login-form">
             
-            <Form.Group controlId="formUsername">
+            <Form.Group controlId="formuserName">
                 
                 <Form.Label>
                     Username: 
                 </Form.Label>
-                <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                <Form.Control type="text" value={userName} onChange={e => setuserName(e.target.value)} />
             
             </Form.Group>
            
@@ -66,6 +67,12 @@ export function LoginView(props) {
         </Container>
     );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    handleSubmit: (userName, password) => dispatch(handleSubmit(userName, password))
+});
+
+export default connect(null, mapDispatchToProps)(LoginView); 
 
 LoginView.propTypes = {
     user: PropTypes.shape ({

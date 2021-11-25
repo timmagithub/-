@@ -16,7 +16,7 @@ export class MovieView extends React.Component {
       const token = localStorage.getItem('token');
       const user = localStorage.getItem('user');
       axios.post(`https://quikflix.herokuapp.com/users/${user}/myMovies/` + 
-          this.props.movie._id, {}, {headers: { Authorization: `Bearer ${token}` }, })
+          this.props.movie._id, {}, { headers: { Authorization: `Bearer ${token}` } })
           .then(response => {
               const data = response.data;
               console.log(data);
@@ -87,13 +87,11 @@ export class MovieView extends React.Component {
 
           <Row>
             <Col>
-              <Button variant="primary" type="submit" onClick={handleSubmit}>
+              <Button variant="primary" className="fav-button" type="submit" onClick={handleSubmit}>
                   Add to Favs
               </Button>
-            </Col>
 
-            <Col>
-              <Button variant="primary" onClick={() => onBackClick(null)}>
+              <Button variant="primary" className="back-button" onClick={() => onBackClick(null)}>
                 Back
               </Button>
             </Col>

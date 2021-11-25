@@ -1,0 +1,29 @@
+.profile-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.fav-movies {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+}
+
+.user-info > p {
+  align-items: flex-start;
+}
+
+h2 {
+  text-align: center;
+}
+
+.delete-user {
+  margin-left: 35%;
+  margin-right: 35%;
+}

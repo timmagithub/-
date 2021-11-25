@@ -8,16 +8,16 @@ import { Link } from 'react-router-dom';
 
 import './registration-view.scss';
 
-export function RegistrationView(props) {
-    const [ username, setUsername ] = useState('');
+export function RegistrationView() {
+    const [ userName, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
-    const [ birthDate, setBirthdate ] = useState('');
+    const [ birthDate, setbirthDate ] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://quikflix.herokuapp.com/users', {
-            userName: username,
+        axios.post(`https://quikflix.herokuapp.com/users`, {
+            userName: userName,
             password: password,
             email: email,
             birthDate: birthDate
@@ -36,32 +36,48 @@ export function RegistrationView(props) {
         <Container className="container">
         <Form className="registration-view">
 
-            <Form.Group controlId="formUsername">
+            <Form.Group controlId="formuserName">
                 <Form.Label>
-                    Username:
+                    userName:
                 </Form.Label> 
-                <Form.Control className="input" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <Form.Control 
+                    className="input" 
+                    type="text" 
+                    value={userName} 
+                    onChange={(e) => setUsername(e.target.value)} />
             </Form.Group>
            
             <Form.Group controlId="formPassword">
                 <Form.Label>
                     Create Password: 
                 </Form.Label>
-                <Form.Control className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Form.Control 
+                    className="input" 
+                    type="password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formEmail">
                 <Form.Label>
                   Email:
                 </Form.Label> 
-             <Form.Control className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+             <Form.Control 
+                className="input" 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} />
             </Form.Group>
             
-            <Form.Group controlId="formBirthdate">
+            <Form.Group controlId="formbirthDate">
                 <Form.Label>
-                  Birthdate: 
+                  birthDate: 
                 </Form.Label>
-                <Form.Control className="input" type="birthDate" value={birthDate} onChange={(e) => setBirthdate(e.target.value)} />
+                <Form.Control 
+                    className="input" 
+                    type="birthDate" 
+                    value={birthDate} 
+                    onChange={(e) => setbirthDate(e.target.value)} />
             </Form.Group>
 
             <Button variant="primary" type="submit" onClick={handleSubmit}>

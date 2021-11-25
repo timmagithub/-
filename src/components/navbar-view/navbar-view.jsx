@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap';
 
+import './navbar.scss'
 export class NavbarView extends React.Component {
     onLoggedOut = () => {
         localStorage.removeItem('token');
@@ -15,15 +16,15 @@ export class NavbarView extends React.Component {
         const { user } = this.props;
         
         return (
-                <Navbar>
+                <Navbar className="navbar">
                     <h1>quikFlix</h1>
-                    <Nav.Link href={`/users/${user}`}>
+                    <Nav.Link className="nav-link" href={`/users/${user}`}>
                         Profile
                     </Nav.Link>
-                    <Nav.Link href={`/`}>
+                    <Nav.Link className="nav-link" href={`/`}>
                         Movies
                     </Nav.Link>
-                    <Nav.Link href={'/'} onClick={this.onLoggedOut}>
+                    <Nav.Link className="nav-link" href={'/'} onClick={this.onLoggedOut}>
                         Log Out
                     </Nav.Link>
                 </Navbar>
