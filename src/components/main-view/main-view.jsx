@@ -14,7 +14,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 
 import MoviesList from '../movies-list/movies-list';
 
@@ -24,17 +24,12 @@ class MainView extends React.Component {
 
     constructor () {
         super();
-        this.state={
-            user: null
-        };
     }
 
     componentDidMount(){
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
+            this.props.setUser(localStorage.getItem('user'));
             this.getMovies(accessToken);
         }
     }
@@ -53,10 +48,7 @@ class MainView extends React.Component {
 
     onLoggedIn(authData) {
         console.log(authData);
-        this.setState({
-            user: authData.userName
-        });
-        
+        this.props.setUser(authData.user.userName);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.userName);
         this.getMovies(authData.token);
@@ -149,4 +141,4 @@ let mapStateToProps = state => {
     user: state.user}
 }
 
-export default connect(mapStateToProps, { setMovies} )(MainView);
+export default connect(mapStateToProps, { setMovies, setUser } )(MainView);

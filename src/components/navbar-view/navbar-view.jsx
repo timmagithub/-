@@ -7,9 +7,7 @@ export class NavbarView extends React.Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user'); 
             console.log('logged out');
-            this.setState({
-                user: null
-            });
+            this.props.setUser(null);
     }
 
     render() {
