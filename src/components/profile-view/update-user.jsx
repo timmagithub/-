@@ -17,20 +17,22 @@ export function UpdateUser() {
         const user = localStorage.getItem('user');
 
         axios.put(`https://quikflix.herokuapp.com/users/${user}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        }, {
             userName: userName,
             password: password,
             email: email,
             birthDate: birthDate
+        },  {
+            headers: { Authorization: `Bearer ${token}` }
         })
         .then(response => {
             alert('Your account has been updated.');
             const data = response.data;
+            localStorage.setItem('user', data.userName)
             console.log(data);
+            window.open(`/users/${data.userName}`, '_self');
         })
         .catch(e=> {
-            console.log('error registering the user')
+            console.log('error updating the user')
         });
     };
 
