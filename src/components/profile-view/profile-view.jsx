@@ -4,7 +4,8 @@ import axios from 'axios';
 
 
 import { Button } from 'react-bootstrap';
-import { setUser } from '../../actions/actions';
+import { setUser } from '../../actions/actions-type';
+import { setMovies } from '../../actions/actions-type';
 
 
 import { UserInfo } from './user-info';
@@ -18,7 +19,7 @@ import './profile-view.scss';
 
 class ProfileView extends React.Component {
 
-    constructor () {
+    constructor() {
         super();
         this.state = {
             userName: null,
@@ -29,7 +30,7 @@ class ProfileView extends React.Component {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let accessToken = localStorage.getItem('token');
         this.getUser(accessToken);
         
@@ -40,18 +41,18 @@ class ProfileView extends React.Component {
         axios.get(`https://quikflix.herokuapp.com/users/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
-        .then(response => {
-            this.setState({
-                userName: response.data.userName,
-                password: response.data.password,
-                email: response.data.email,
-                birthDate: response.data.birthDate,
-                movieList: response.data.movieList
+            .then(response => {
+                this.setState({
+                    userName: response.data.userName,
+                    password: response.data.password,
+                    email: response.data.email,
+                    birthDate: response.data.birthDate,
+                    movieList: response.data.movieList
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
             });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
     }
 
     handleDeleteMovie() {
@@ -84,15 +85,18 @@ class ProfileView extends React.Component {
         });
     }
        
+    
+
     render() {
         const { userName, email, movieList, handleDeleteUser } = this.state;
+        const { movies } = this.props;
 
         return (
 
             <div className="profile-view">
                 <UserInfo userName={userName} email={email}/>
             
-                <FavoriteMovies movieList={movieList} />   
+                <FavoriteMovies movieList={movieList} movies={movies} />   
 
                 <UpdateUser /> 
    
@@ -108,6 +112,6 @@ let mapStateToProps = state => {
     user: state.user }
 }
 
-export default connect(mapStateToProps, { setUser, UpdateUser })(ProfileView);
+export default connect(mapStateToProps, { setUser, setMovies })(ProfileView);
 
 

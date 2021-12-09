@@ -1,11 +1,10 @@
-$main-color: rgb(230, 230, 250);
+$main-color: rgb(177, 177, 177);
+
+.router-body {
+    background-color: $main-color;
+}
 
 .main-view {
     box-sizing: border-box;
-    display: grid;
-}
-
-.movie-card-callback {
-    background-color: $main-color;
-    border: 2px solid black;
+    display: flex;
 }

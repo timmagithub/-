@@ -29,17 +29,19 @@ export class MovieCard extends React.Component {
         return ( 
             <Container className="card-container">
                 <Card className="movie-card">
-                    <Card.Img crossOrigin="anonymous" variant="top" src={movie.image} />
+                    <Card.Img crossOrigin="anonymous" className="card-img" variant="top" src={movie.image} />
 
                         <Card.Body className="card-body">
-                            <Card.Title>{movie.title}</Card.Title>
-                            <Card.Text>{movie.year}</Card.Text>
-                            <Link to={`/movies/${movie.title}`} >
-                                <Button variant="link">Open</Button>
-                            </Link>
-                            <Button variant="primary" type="submit" onClick={handleSubmit}>
+                            <Card.Title className="card-title" >{movie.title}</Card.Title>
+                        <Card.Text className="card-text" >{movie.year}</Card.Text>
+                        <div>
+                                <Link to={`/movies/${movie.title}`} >
+                                    <Button variant="link">Open</Button>
+                                </Link>
+                                <Button variant="primary" className="card-btn" type="submit" onClick={handleSubmit}>
                                 Add to Favs
-                            </Button>
+                                </Button>
+                        </div>    
                         </Card.Body>
                     </Card>
             </Container>

@@ -1,5 +1,14 @@
 .navbar {
     width: 100%; 
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-action {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
 }
 
 .nav-link {

@@ -38,7 +38,7 @@ export function RegistrationView() {
 
             <Form.Group controlId="formuserName">
                 <Form.Label>
-                    userName:
+                    Username:
                 </Form.Label> 
                 <Form.Control 
                     className="input" 
@@ -49,7 +49,7 @@ export function RegistrationView() {
            
             <Form.Group controlId="formPassword">
                 <Form.Label>
-                    Create Password: 
+                    Password: 
                 </Form.Label>
                 <Form.Control 
                     className="input" 
@@ -71,7 +71,7 @@ export function RegistrationView() {
             
             <Form.Group controlId="formbirthDate">
                 <Form.Label>
-                  birthDate: 
+                  Birthdate: 
                 </Form.Label>
                 <Form.Control 
                     className="input" 

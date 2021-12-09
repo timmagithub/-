@@ -14,7 +14,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 
-import { setMovies, setUser } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions-type';
 
 import MoviesList from '../movies-list/movies-list';
 
@@ -47,8 +47,8 @@ class MainView extends React.Component {
     }
 
     onLoggedIn(authData) {
-        console.log(authData);
-        this.props.setUser(authData.user.userName);
+        // console.log(authData);
+        this.props.setUser(authData.user);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.userName);
         this.getMovies(authData.token);
@@ -59,7 +59,7 @@ class MainView extends React.Component {
         const { movies, user } = this.props;
 
         return (
-            <Router>
+            <Router className="router-body">
                 <NavbarView user={user} />
 
                 <Row className="main-view justify-content-md-center">

@@ -5,7 +5,7 @@ import {
   SET_MOVIES,
   SET_USER,
   UPDATE_USER,
-} from "../actions/actions";
+} from "../actions/actions-type";
 
 function visibilityFilter(state = "", action) {
   switch (action.type) {

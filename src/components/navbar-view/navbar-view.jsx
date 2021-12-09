@@ -16,15 +16,18 @@ export class NavbarView extends React.Component {
         return (
                 <Navbar className="navbar">
                     <h1>quikFlix</h1>
-                    <Nav.Link className="nav-link" href={`/users/${user}`}>
-                        Profile
-                    </Nav.Link>
-                    <Nav.Link className="nav-link" href={`/`}>
-                        Movies
-                    </Nav.Link>
-                    <Nav.Link className="nav-link" href={'/'} onClick={this.onLoggedOut}>
+                {user ? 
+                    <div className="nav-action">
+                        <Nav.Link className="nav-link" href={`/users/${user}`}>
+                            Profile
+                        </Nav.Link>
+                        <Nav.Link className="nav-link" href={`/`}>
+                            Movies
+                        </Nav.Link>
+                        <Nav.Link className="nav-link" href={'/'} onClick={this.onLoggedOut}>
                         Log Out
-                    </Nav.Link>
+                        </Nav.Link> 
+                    </div> : null}
                 </Navbar>
                 
         )
