@@ -29,9 +29,28 @@ class MainView extends React.Component {
     componentDidMount(){
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.props.setUser(localStorage.getItem('user'));
+            this.getUser(accessToken);
             this.getMovies(accessToken);
         }
+    }
+
+    getUser(token) {
+        const user = localStorage.getItem('user');
+        axios.get(`https://quikflix.herokuapp.com/users/${user}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                this.props.setUser({
+                    userName: response.data.userName,
+                    password: response.data.password,
+                    email: response.data.email,
+                    birthDate: response.data.birthDate,
+                    movieList: response.data.movieList
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     getMovies(token) {
