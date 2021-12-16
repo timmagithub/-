@@ -4,9 +4,7 @@ import axios from 'axios';
 
 
 import { Button } from 'react-bootstrap';
-import { setUser } from '../../actions/actions-type';
-import { setMovies } from '../../actions/actions-type';
-
+import { setUser, setMovies } from '../../actions/actions-type';
 
 import { UserInfo } from './user-info';
 import { FavoriteMovies } from './favorite-movies';
@@ -21,57 +19,14 @@ class ProfileView extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            userName: null,
-            password: null,
-            email: null,
-            birthDate: null,
-            movieList: []
-        };
-    }
-
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        this.getUser(accessToken);
         
     }
 
-    getUser(token) {
-        const user = localStorage.getItem('user');
-        axios.get(`https://quikflix.herokuapp.com/users/${user}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then(response => {
-                this.setState({
-                    userName: response.data.userName,
-                    password: response.data.password,
-                    email: response.data.email,
-                    birthDate: response.data.birthDate,
-                    movieList: response.data.movieList
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-    handleDeleteMovie() {
-        axios.delete(`https://quikflix.herokuapp.com/users/${this.props.user}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(() => {
-            alert('Movie removed from list.');
-            this.componentDidMount();
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    }
-    
-    handleDeleteUser(e) {
+    render() {
+        const handleDeleteUser = (e) => {
         e.preventDefault();
 
-        axios.delete(`https://quikflix.herokuapp.com/users/${this.props.user}`, {
+        axios.delete(`https://quikflix.herokuapp.com/users/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(() => {
@@ -84,19 +39,15 @@ class ProfileView extends React.Component {
             console.log(e);
         });
     }
-       
-    
 
-    render() {
-        const { userName, email, movieList, handleDeleteUser } = this.state;
-        const { movies } = this.props;
+        const { movies, user } = this.props;
 
         return (
 
             <div className="profile-view">
-                <UserInfo userName={userName} email={email}/>
+                <UserInfo userName={user.userName} email={user.email}/>
             
-                <FavoriteMovies movieList={movieList} movies={movies} />   
+                <FavoriteMovies movieList={user.movieList} movies={movies} />   
 
                 <UpdateUser /> 
    
