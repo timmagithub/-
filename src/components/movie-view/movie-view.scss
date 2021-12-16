@@ -3,7 +3,8 @@ $main-color: rgb(238, 238, 238);
 .movie-view {
     box-sizing: border-box;
     padding: 20px;
-    background-color: $main-color;
+    box-shadow: 0 0 45px $main-color;
+
 }
 
 .value-title {

@@ -5,8 +5,20 @@
 
 .fav-movies {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  
+}
+
+.movie-list {
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
   flex-wrap: wrap;
+}
+
+.fav-card {
+  width: max-content;
 }
 
 .user-info {
