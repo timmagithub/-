@@ -24,21 +24,22 @@ class ProfileView extends React.Component {
 
     render() {
         const handleDeleteUser = (e) => {
-        e.preventDefault();
-
-        axios.delete(`https://quikflix.herokuapp.com/users/${user}`, {
+            e.preventDefault();
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            axios.delete(`https://quikflix.herokuapp.com/users/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(() => {
+            })
+            .then(() => {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
             alert('Goodbye!');
             window.open('/', '_self');
-        })
-        .catch((e) => {
+            })
+            .catch((e) => {
             console.log(e);
-        });
-    }
+            });
+        }
 
         const { movies, user } = this.props;
 
