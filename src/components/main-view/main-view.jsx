@@ -14,7 +14,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 
-import { setMovies, setUser } from '../../actions/actions-type';
+import { setMovies, setUser } from '../../actions/actions-type'
 
 import MoviesList from '../movies-list/movies-list';
 
@@ -145,7 +145,7 @@ class MainView extends React.Component {
                         if (!user) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>    
-                        return <ProfileView history={history} user={user} />    
+                        return <ProfileView history={history} />    
                     }} />     
 
                 </Row>
