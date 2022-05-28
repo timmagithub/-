@@ -32,7 +32,7 @@ class MovieCard extends React.Component {
             const token = localStorage.getItem('token');
             const user = localStorage.getItem('user');
             axios.delete(`https://quikflix.herokuapp.com/users/${user}/myMovies/` + 
-                this.props.movie._id, {}, {headers: { Authorization: `Bearer ${token}` }, })
+                this.props.movie._id, {headers: { Authorization: `Bearer ${token}` }, })
                 .then(response => {
                     const data = response.data;
                     console.log(data);
