@@ -18,7 +18,7 @@ export class NavbarView extends React.Component {
                     <h1>quikFlix</h1>
                 {user ? 
                     <div className="nav-action">
-                        <Nav.Link className="nav-link" href={`/users/${user}`}>
+                        <Nav.Link className="nav-link" href={`/users/${user.userName}`}>
                             Profile
                         </Nav.Link>
                         <Nav.Link className="nav-link" href={`/`}>
