@@ -3,24 +3,24 @@
   flex-direction: column;
 }
 
-.fav-movies {
-  display: flex;
-  flex-direction: column;
+// .fav-movies {
+//   display: flex;
+//   flex-direction: column;
   
-}
+// }
 
 .movie-list {
-  
   margin-top: 2%;
   margin-left: 10%;
   margin-right: 10%;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
 .fav-card {
-  
-  width: max-content;
+  margin: 1%;
+  flex-basis: 21%;
 }
 
 .user-info {
