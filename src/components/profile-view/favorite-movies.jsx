@@ -13,7 +13,7 @@ export function FavoriteMovies({ movieList, movies }) {
             <div className="movie-list">
             {movies.filter(f => movieList.find(m => f._id === m)).map(m => 
                
-                    <div className="fav-card">
+                    <div className="fav-card card-box">
                         <MovieCard movie={m} key={m._id} />
                         </div>
                

@@ -3,32 +3,39 @@ $shadow-color: rgb(220, 220, 220);
 .card-container {
     box-shadow: 0 0 15px $main-color;
     box-sizing: border-box;
-    min-height: max-content;
     display: flex;
-    margin: 5px;
+    margin: 20px;
+
         &:hover {
             box-shadow: 0 0 25px $shadow-color;
         }
+
+   
+}
+
+.card-box {
+    display: flex;
 }
 
 .card-body {
     background-color: white;
+    height: 100%;
     font-weight: 500;
     display: flex;
     flex-direction: column;
 }
 
 .card-display {
-    min-height: 25vh;
-    // &:hover {
-    //     border: 2px solid rgb(0, 0, 0)
-    // }
-    
+    min-height: 100%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    border: none;   
 }
 
 .card-img {
     max-width: 100px;
-    margin-top: 10px;
+    margin-top: 6%;
     align-self: center;
 
 }
